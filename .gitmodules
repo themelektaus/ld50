@@ -1,0 +1,9 @@
+[submodule "Assets\\MT Packages\\Core"]
+	path = Assets\\MT Packages\\Core
+	url = https://gitlab.steinalt.online/mt-packages/core.git
+[submodule "Assets\\MT Packages\\Pixel Art Editor"]
+	path = Assets\\MT Packages\\Pixel Art Editor
+	url = https://gitlab.steinalt.online/mt-packages/direct-pixel-art-editor.git
+[submodule "Assets\\MT Packages\\Logging"]
+	path = Assets\\MT Packages\\Logging
+	url = https://gitlab.steinalt.online/mt-packages/logging.git
