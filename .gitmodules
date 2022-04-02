@@ -7,3 +7,12 @@
 [submodule "Assets\\MT Packages\\Logging"]
 	path = Assets\\MT Packages\\Logging
 	url = https://gitlab.steinalt.online/mt-packages/logging.git
+[submodule "Assets\\MT Packages\\Extended Transform Editor"]
+	path = Assets\\MT Packages\\Extended Transform Editor
+	url = https://gitlab.steinalt.online/mt-packages/extended-transform-editor.git
+[submodule "Assets\\MT Packages\\Replay System"]
+	path = Assets\\MT Packages\\Replay System
+	url = https://gitlab.steinalt.online/mt-packages/replay-system.git
+[submodule "Assets\\MT Packages\\Input Manager"]
+	path = Assets\\MT Packages\\Input Manager
+	url = https://gitlab.steinalt.online/mt-packages/input-manager.git
