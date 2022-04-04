@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace LD50
+namespace MT.LD50
 {
     public class RotateOverTime2D : MonoBehaviour
     {

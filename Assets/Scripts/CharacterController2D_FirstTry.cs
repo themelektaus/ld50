@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace LD50
+namespace MT.LD50
 {
     public class CharacterController2D_FirstTry : MonoBehaviour
     {

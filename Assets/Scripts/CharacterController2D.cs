@@ -1,8 +1,7 @@
 using System;
 using UnityEngine;
-using UnityEngine.Events;
 
-namespace LD50
+namespace MT.LD50
 {
     [RequireComponent(typeof(Rigidbody2D))]
     public class CharacterController2D : MonoBehaviour
@@ -26,12 +25,22 @@ namespace LD50
         [SerializeField] int jumpCount = 1;
         [SerializeField] Vector2 verticalVelocityRange = new(-15, 10);
 
+        [SerializeField] GameObject interactMarker;
+        [SerializeField] Animator animator;
+        [SerializeField] Transform spriteTransform;
+        [SerializeField] GameObject jumpEffect;
+
         Rigidbody2D body;
-        Ground2D ground;
+        [NonSerialized] public Ground2D ground;
         float moveVelocity;
         float airTime;
         float jumpTime;
         int currentJumpCount;
+        bool wasGrounded;
+
+
+        public DialogTrigger dialogTrigger;
+        public IActiveObject activeObject;
 
         public event Func<float, float, float> onVelocityUpdate;
 
@@ -39,13 +48,48 @@ namespace LD50
         {
             body = GetComponent<Rigidbody2D>();
             ground = GetComponentInChildren<Ground2D>();
+            spriteTransform = animator.GetComponentInChildren<SpriteRenderer>().transform;
+        }
+
+        float GetMove()
+        {
+            return activeObject is null ? move : 0;
         }
 
         void Update()
         {
+            var move = GetMove();
+
             ground.SetSticky(move == 0);
             moveVelocity = move * Mathf.Max(speed - ground.friction, 0);
             jumpTime = Mathf.Max(0, jumpTime - Time.deltaTime);
+
+            dialogTrigger = null;
+            var colliders = Physics2D.OverlapPointAll(body.position);
+            foreach (var collider in colliders)
+                if (collider.TryGetComponent(out dialogTrigger))
+                    break;
+
+            interactMarker.SetActive(dialogTrigger is not null);
+
+            animator.SetFloat("Move", airTime < .1f ? Mathf.Abs(move) : 0);
+            if (wasGrounded != ground.isTouching)
+            {
+                if (!wasGrounded)
+                    animator.SetTrigger("Land");
+                wasGrounded = ground.isTouching;
+            }
+            else
+            {
+                animator.ResetTrigger("Land");
+            }
+
+            if (move != 0)
+            {
+                var scale = spriteTransform.localScale;
+                scale.x = move < 0 ? -1 : 1;
+                spriteTransform.localScale = scale;
+            }
         }
 
         void FixedUpdate()
@@ -89,10 +133,19 @@ namespace LD50
 
         void FixedUpdate_Jump(float deltaTime, ref Vector2 velocity)
         {
-            if (jump)
+            if (airTime >= coyoteTime && currentJumpCount == 0)
+                currentJumpCount = 1;
+
+            if (activeObject is null && jump)
             {
-                jump = false;
-                if (jumpCount > 0 && (ground.isTouching || (jumpTime == 0 && (airTime < coyoteTime || currentJumpCount < jumpCount))))
+                if (jumpCount > 0 && (
+                    ground.isTouching || (
+                        jumpTime == 0 && (
+                            airTime < coyoteTime ||
+                            currentJumpCount < jumpCount
+                        )
+                    )
+                ))
                 {
                     jumpTime = .2f;
                     currentJumpCount++;
@@ -106,8 +159,15 @@ namespace LD50
                         jumpSpeed += Mathf.Abs(velocity.y);
 
                     velocity.y += jumpSpeed;
+
+                    if (currentJumpCount > 1)
+                        Instantiate(jumpEffect, body.position, Quaternion.identity);
+
+                    animator.SetTrigger("Jump");
                 }
             }
+
+            jump = false;
 
             if (body.velocity.y > 0)
             {
@@ -130,6 +190,17 @@ namespace LD50
 
             jumpTime = 0;
             currentJumpCount = 0;
+        }
+
+        public void UnlockBoots()
+        {
+            jumpCount = 2;
+        }
+
+        public void UnlockJetPack()
+        {
+            if (TryGetComponent<Player2D>(out var player))
+                player.canUseJetpack = true;
         }
     }
 }
