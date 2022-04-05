@@ -130547,26 +130547,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1751058370, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
-      propertyPath: m_AssetsPPU
-      value: 96
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751058370, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
-      propertyPath: m_CropFrame
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751058370, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
-      propertyPath: m_RefResolutionX
-      value: 1920
-      objectReference: {fileID: 0}
-    - target: {fileID: 1751058370, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
-      propertyPath: m_RefResolutionY
-      value: 1080
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942284324792998444, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1942284324792998446, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -130610,26 +130590,6 @@ PrefabInstance:
     - target: {fileID: 1942284324792998446, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942284324792998609, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
-      propertyPath: orthographic size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942284324792998609, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
-      propertyPath: m_NormalizedViewPortRect.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942284324792998609, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
-      propertyPath: m_NormalizedViewPortRect.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942284324792998609, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
-      propertyPath: m_NormalizedViewPortRect.width
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1942284324792998609, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
-      propertyPath: m_NormalizedViewPortRect.height
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1942284324792998610, guid: 11b8f1a5d93a02540870e7661cf58440, type: 3}
       propertyPath: m_Name
