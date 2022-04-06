@@ -5,15 +5,15 @@ namespace MT.LD50
 {
     public class Trigger : MonoBehaviour
     {
-        [SerializeField] bool unparentOnAwake;
+        [SerializeField] Transform parent;
 
         [SerializeField] UnityEvent<Collider2D> onTriggerEnter = new();
         [SerializeField] UnityEvent<Collider2D> onTriggerExit = new();
 
         void Awake()
         {
-            if (unparentOnAwake)
-                transform.SetParent(null);
+            if (parent)
+                transform.SetParent(parent);
         }
 
         void OnTriggerEnter2D(Collider2D collision)

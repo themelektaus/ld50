@@ -15,7 +15,7 @@ namespace MT.LD50
 
         [SerializeField] GameObject ui;
         [SerializeField] Transform uiBar;
-        [SerializeField] AudioSource audio;
+        [SerializeField] AudioSource audioSource;
 
         CharacterController2D controller;
         float maxFuel;
@@ -37,7 +37,7 @@ namespace MT.LD50
             scale.x = fuel / maxFuel;
             uiBar.localScale = scale;
 
-            audio.volume = active && fuel > 0 ? 1 : 0;
+            audioSource.volume = active && fuel > 0 ? 1 : 0;
 
             if (autoRestoreFuel == 0)
                 return;
